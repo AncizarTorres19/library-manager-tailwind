@@ -17,4 +17,21 @@
   }
 }
 
+/* styles.css */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Ancho del scrollbar */
+}
 
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  opacity: 0.3;
+  background: rgba(122, 114, 114, 0.6);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(201, 187, 187, 0.6);
+  /* Color de la pista del scrollbar */
+  border-radius: 8px;
+  /* Radio de borde de la pista */
+}

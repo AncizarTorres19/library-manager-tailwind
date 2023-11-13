@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class', 
   content: [
     "./index.html",
     "./src/**/*.{js,jsx}",
@@ -72,6 +73,7 @@ export default {
         },
         darkcyan: "#4d997f",
         honeydew: "#eef9ed",
+        iceBlue: '#F3F9FA',
         dimgray: {
           "100": "#707070",
           "200": "#627173",

@@ -18,7 +18,7 @@ export const AppPageLayout = () => {
 
     return (
         <NavigateAppProvider>
-            <div className='AppPage flex w-full'>
+            <div className='AppPage flex w-full bg-iceBlue'>
                 <div className='Header&AppContentPageLayout w-full flex flex-col'>
                     <Header />
                     <div className='mt-16 min-h-[calc(100vh-64px)]'>
