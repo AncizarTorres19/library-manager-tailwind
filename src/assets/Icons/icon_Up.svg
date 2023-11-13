@@ -1,0 +1,11 @@
+<svg id="icon_Up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="13.54" height="18.696" viewBox="0 0 13.54 18.696">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_3730" data-name="Rectángulo 3730" width="13.54" height="18.696" transform="translate(0 0)" fill="none" stroke="#202626" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_2933" data-name="Grupo 2933" transform="translate(0 0)" clip-path="url(#clip-path)">
+    <line id="Línea_6350" data-name="Línea 6350" y2="12.826" transform="translate(6.79 5.12)" fill="none" stroke="#202626" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Trazado_19572" data-name="Trazado 19572" d="M12.79,6.693,6.847.75l-6.1,6.1" fill="none" stroke="#202626" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
