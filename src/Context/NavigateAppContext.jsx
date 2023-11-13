@@ -55,7 +55,6 @@ export const NavigateAppProvider = ({ children }) => {
             setEmptyState,
             setPendienteState,
             setState,
-            updateMonths,
         };
     }, [actualPage, setActualPage, state, setState]);
 

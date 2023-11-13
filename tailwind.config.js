@@ -34,6 +34,7 @@ export default {
         primary: {
           green1: "#4D997F",
           green2: "#CEE6AD",
+          blue1: "#134678",
           white1: "#FFFFFF",
           title1: "#0E555C",
           gris1: "#f7f9f7",

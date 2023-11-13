@@ -26,9 +26,10 @@ import RegistrosIcon from "./icon_register.svg"
 import ResultadosIcon from "./icon_results.svg"
 import SupportIcon from "./icon_support.svg"
 import TrushIcon from "./icon_trush.svg"
-import UserIcon from "./icon_user.svg"
+// import UserIcon from "./icon_user.svg"
 import ViewPassword from "./icon_viewPassword.svg"
 import YoutubeIcon from "./icon_Youtube.svg"
+import UserIcon from "./user.svg"
 
 export const Icons = {
     AddDocumentBlackIcon,

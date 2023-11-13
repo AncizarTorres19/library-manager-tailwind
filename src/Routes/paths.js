@@ -1,7 +1,7 @@
 export const paths = {
     APP: "/app",
     APPCOMPENSACION: "/app/compensation",
-    APPHOME: "/app/start",
+    APPHOME: "/app/home",
     APPREGISTROS: "/app/records",
     APPREGISTROSREPORTES: "/app/records/report/:reportId",
     APPRESULTADOS: "/app/results",

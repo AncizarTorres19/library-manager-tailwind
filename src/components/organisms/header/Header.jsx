@@ -9,6 +9,9 @@ import { useSelector } from 'react-redux'
 //Actions
 import { signOffCase } from '../../../redux/slices/AuthSlice'
 import { resetRegisterAction } from '../../../redux/slices/RegisterSlice'
+//Assets
+import { Icons } from '../../../assets/Icons/IconProvider'
+const { UserIcon } = Icons  //Iconos
 
 export const Header = () => {
 
@@ -30,23 +33,24 @@ export const Header = () => {
         dispatch(signOffCase())
         dispatch(resetRegisterAction())
         setLogOutVisible(false)
-        nav(paths.HOME)
+        nav(paths.LOGIN)
     }
 
     return (
-        <div className='Header bg-primary-white1 w-full h-16 flex justify-end fixed left-0 top-0 z-10'>
-            {logOutVisible ?
-                <div className='bg-indigo-500 w-[100vw] h-screen absolute z-30 right-0 bg-transparent' onClick={() => setLogOutVisible(false)}>
-                    <div
-                        className='absolute border border-gray-500 rounded-lg px-3 py-[4px] right-[90px] top-12 z-50 cursor-pointer bg-whitesmoke-300'
+        <div className='Header bg-primary-blue1 w-full h-14 flex justify-end fixed left-0 top-0 z-10 p-6'>
+            <div className='flex items-center justify-between gap-7 w-full text-white'>
+                <p>Corporación Universitaria Autónoma de Nariño</p>
+                <div className='flex items-center gap-2 cursor-pointer'>
+                    <img className='mb-1' src={UserIcon} alt="UserIcon" />
+                    <p>{username}</p>
+                    <span>|</span>
+                    <span
+                        className='cursor-pointer'
                         onClick={logOutAction}
                     >
-                        Cerrar Sesión
-                    </div>
+                        Salir
+                    </span>
                 </div>
-                : null}
-            <div className='flex items-center gap-3 mr-12'>
-                <p>{username}</p>
             </div>
         </div>
     )

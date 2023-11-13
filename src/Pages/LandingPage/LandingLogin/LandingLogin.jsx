@@ -11,10 +11,13 @@ import unsplash from '../../../assets/Images/unsplash.png';
 
 import './LandingLogin.css';
 import { TextInputController } from '../../../components/organisms/inputs/TextInputController';
+import { paths } from '../../../routes/paths';
+import { LoginAction } from '../../../redux/actions/AuthAction';
+import { useAppDispatch } from '../../../redux/store';
 export const LandingLogin = () => {
 
-    // const { dispatch } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // hook para navegar entre páginas
+    const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
     const [rememberMe, setRememberMe] = useState(false);
 
@@ -35,6 +38,8 @@ export const LandingLogin = () => {
         defaultValues // se inicializa el formulario con los valores por defecto
     });
 
+    const dataForm = watch(); // obtiene los valores del formulario
+
     const onSubmit = (data) => {
         console.log(data);
         // dispatch({
@@ -45,7 +50,21 @@ export const LandingLogin = () => {
         //     }
         // });
         // navigate('/aunar-library/dashboard');
-        navigate('/dashboard');
+        // navigate(paths.APPHOME);
+        onLogIn();
+    }
+
+    const onLogIn = async () => {
+        // Lógica de autenticación, verificación de credenciales, etc.
+        const user = {
+            email: dataForm.email,
+            contraseña: dataForm.password,
+            // otros datos del usuario
+        };
+
+        const { error, verify } = await dispatch(LoginAction(user)); // envía la acción de login con el usuario autenticado
+        error && setTextAlert(error); // si hay un error, muestra el mensaje
+        verify && navigate(paths.APPHOME); // si el usuario está autenticado, redirige a la página de inicio
     }
 
 
