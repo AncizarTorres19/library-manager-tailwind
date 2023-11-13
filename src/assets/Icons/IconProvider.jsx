@@ -26,12 +26,27 @@ import RegistrosIcon from "./icon_register.svg"
 import ResultadosIcon from "./icon_results.svg"
 import SupportIcon from "./icon_support.svg"
 import TrushIcon from "./icon_trush.svg"
-// import UserIcon from "./icon_user.svg"
 import ViewPassword from "./icon_viewPassword.svg"
 import YoutubeIcon from "./icon_Youtube.svg"
 import UserIcon from "./user.svg"
+import Teachers from "./teachers.svg"
+import Students from "./students.svg"
+import Articles from "./articles.svg"
+import SelectedTeachers from "./selectedTeachers.svg"
+import SelectedStudents from "./selectedStudents.svg"
+import SelectedArticles from "./selectedArticles.svg"
+import Filter from "./filter.svg"
+import Search from "./search.svg"
 
 export const Icons = {
+    Search,
+    Filter,
+    Teachers,
+    Students,
+    Articles,
+    SelectedTeachers,
+    SelectedStudents,
+    SelectedArticles,
     AddDocumentBlackIcon,
     AddDocumentIcon,
     Arrow1Icon,

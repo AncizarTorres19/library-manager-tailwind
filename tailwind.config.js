@@ -54,10 +54,12 @@ export default {
           buttonBg2: "#43C8F2",
         },
         white: "#fff",
+        lightBlue: "#26A6D9",
         blancoMisty: "#F7F9F7",
         midnightBlue: '#20262666',
         forestGray: '#363F40',
         lightHaze: '#F0F2F2',
+        silverClear: '#E3E3E3',
         darkslategray: {
           "100": "#0e555c",
           "200": "#363f40",
