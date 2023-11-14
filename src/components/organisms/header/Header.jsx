@@ -8,7 +8,6 @@ import { useAppDispatch } from '../../../redux/store'
 import { useSelector } from 'react-redux'
 //Actions
 import { signOffCase } from '../../../redux/slices/AuthSlice'
-import { resetRegisterAction } from '../../../redux/slices/RegisterSlice'
 //Assets
 import { Icons } from '../../../assets/Icons/IconProvider'
 const { UserIcon } = Icons  //Iconos
@@ -31,7 +30,6 @@ export const Header = () => {
     const logOutAction = async () => {
         localStorage.clear();
         dispatch(signOffCase())
-        dispatch(resetRegisterAction())
         setLogOutVisible(false)
         nav(paths.LOGIN)
     }

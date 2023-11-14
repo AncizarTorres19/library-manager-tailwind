@@ -24,11 +24,5 @@ const createAxiosClient = (baseURL) => {
   return axiosClient;
 };
 
-// axios para el backend del módulo de energía
-export const axiosClientEnergyProjects = createAxiosClient(import.meta.env.VITE_PUBLIC_BACKEND_URL_ENERGIA);
-// axios para el backend del módulo de agro
-export const axiosClientAgroProjects = createAxiosClient(import.meta.env.VITE_PUBLIC_BACKEND_URL_AGRO);
-// axios para el backend del módulo de huella
-export const axiosClientCarbonFootprint = createAxiosClient(import.meta.env.VITE_PUBLIC_BACKEND_URL_HUELLA);
-// axios para el backend del módulo de en comun
+// axios para el backend
 export const axiosClient = createAxiosClient(import.meta.env.VITE_PUBLIC_BACKEND_URL);

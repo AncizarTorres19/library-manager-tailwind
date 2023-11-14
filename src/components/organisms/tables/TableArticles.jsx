@@ -3,9 +3,12 @@ import { useState } from 'react'
 import { Illustrations } from '../../../assets/Illustrations/IllustrationProvider';
 import { libros } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
+import { StudentsModal } from '../modals/contents/StudentsModal';
 
 export const TableArticles = () => {
 
+    const [openModal, setOpenModal] = useState(false);
+    const [dataModal, setDataModal] = useState({});//[nombre, editorial, categoria, disponibles, img]
     const [searchText, setSearchText] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 5; // Número de elementos por página
@@ -36,6 +39,12 @@ export const TableArticles = () => {
             setCurrentPage(currentPage + 1);
         }
     };
+
+    const handleOpenModal = (item) => {
+        console.log('item', item)
+        setDataModal(item);
+        setOpenModal(true);
+    }
 
 
     return (
@@ -89,7 +98,7 @@ export const TableArticles = () => {
                                 <button
                                     disabled={item.disponibles === 0}
                                     className='underline text-lightBlue font-semibold'
-                                    onClick={() => console.log('Asignar o Agotado')}
+                                    onClick={() => handleOpenModal(item)}
                                 >
                                     {item.disponibles > 0 ? 'Asignar' : 'Agotado'}
                                 </button>
@@ -119,6 +128,7 @@ export const TableArticles = () => {
                     </button>
                 </div>
             </div>
+            {openModal && (<StudentsModal isOpen={openModal} dataModal={dataModal} closeModal={() => setOpenModal(false)} />)}
         </div>
     )
 }

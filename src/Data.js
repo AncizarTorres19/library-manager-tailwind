@@ -323,3 +323,46 @@ export const profesores = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
     },
 ];
+
+export const dataPerson = [
+    {
+        id: 1,
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg',
+        name: 'Luisa Fernanda Gómez Gómez',
+        books: 2,
+        date: '10-09-2023',
+        status: 'Entregado'
+    },
+    {
+        id: 2,
+        img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
+        name: 'Ancizar Torres Lopez',
+        books: 2,
+        date: '10-09-2023',
+        status: 'Entregado'
+    },
+    {
+        id: 3,
+        img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
+        name: 'Michael Gough',
+        books: 2,
+        date: '10-09-2023',
+        status: 'Entregado'
+    },
+    {
+        id: 4,
+        img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg',
+        name: 'Lana Byrd',
+        books: 2,
+        date: '10-09-2023',
+        status: 'Entregado'
+    },
+    {
+        id: 5,
+        img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg',
+        name: 'Thomes Lean',
+        books: 2,
+        date: '10-09-2023',
+        status: 'Entregado'
+    },
+];

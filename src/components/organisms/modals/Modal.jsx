@@ -36,7 +36,7 @@ export const Modal = ({
         <>
             {isOpen && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-midnightBlue font-Sora">
-                    <div className={`bg-white w-2/5 h-${height} rounded-lg p-8`}>
+                    <div className={`bg-white w-2/6 h-${height} rounded-lg p-8`}>
                         <div className="flex justify-end">
                             <img
                                 className="w- h-4 cursor-pointer border border-gray-300 rounded-full opacity-50 hover:opacity-100"
@@ -49,7 +49,7 @@ export const Modal = ({
                         {children}
 
                         {buttons && (
-                            <div className='flex gap-6'>
+                            <div className='flex gap-6 justify-end'>
                                 <button
                                     onClick={closeModal}
                                     className='text-dimgray-100 font-normal text-base underline'
@@ -57,7 +57,7 @@ export const Modal = ({
                                     Anterior
                                 </button>
                                 <button
-                                    onClick={closeModal}
+                                    onClick={actionButtonSecond}
                                     className='bg-lightBlue text-white rounded-md px-4 py-2 text-base font-semibold'
                                 >
                                     Finalizar asignación

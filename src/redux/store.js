@@ -7,20 +7,17 @@ import thunk from 'redux-thunk';
 // importa tus reducers aquí
 // import { reducer as exampleReducer } from './exampleSlice';
 import authReducer from "./slices/AuthSlice";
-import compensationsReducer from "./slices/CompensationsSlice";
-import helpersReducer from "./slices/HelpersSlice";
-import registerReducer from "./slices/RegisterSlice";
-import resultsReducer from "./slices/ResultsSlice";
+import homeReducer from "./slices/HomeSlice";
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'register'],
+  whitelist: ['auth', 'home'],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  register: registerReducer,
+  home: homeReducer,
   // otros reducers aquí
 });
 
@@ -32,9 +29,6 @@ export const store = configureStore({
   reducer: {
     persistedData: persistedReducer,
     // otros reducers aquí
-    compensations: compensationsReducer,
-    helpers: helpersReducer,
-    results: resultsReducer,
   },
   middleware,
 });
