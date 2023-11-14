@@ -4,43 +4,6 @@ import { Illustrations } from '../../../assets/Illustrations/IllustrationProvide
 import { libros } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
 
-const data = [
-    {
-        nombre: 'The Girl with the Dragon Tattoo',
-        tipo: 'Ficción',
-        editorial: 'Vintage Crime/Black Lizard',
-        categoria: 'Novela',
-        estado: 'Disponible',
-        disponibles: 5,
-        prestados: 3,
-        enReparacion: 1,
-        img: 'IllustrationBook'
-    },
-    {
-        nombre: 'Libro 2',
-        tipo: 'No ficción',
-        editorial: 'Vintage Crime/Black Lizard',
-        categoria: 'Historia',
-        estado: 'Agotado',
-        disponibles: 0,
-        prestados: 5,
-        enReparacion: 0,
-        img: 'IllustrationBook'
-    },
-    {
-        nombre: 'Libro 3',
-        tipo: 'Ficción',
-        editorial: 'Vintage Crime/Black Lizard',
-        categoria: 'Ciencia ficción',
-        estado: 'En reparación',
-        disponibles: 2,
-        prestados: 1,
-        enReparacion: 2,
-        img: 'IllustrationBook'
-    },
-    // Agrega más elementos según sea necesario
-];
-
 export const TableArticles = () => {
 
     const [searchText, setSearchText] = useState('');

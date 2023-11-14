@@ -155,3 +155,171 @@ export const libros = [
     },
     // ... Agrega más libros según sea necesario
 ];
+
+export const estudiantes = [
+    {
+        documento: '1121964985',
+        nombre: 'Juan',
+        apellido: 'Perez',
+        carrera: 'Ingeniería en Sistemas',
+        telefono: '12345678',
+        correo: 'juan@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
+    },
+    {
+        documento: '1121964986',
+        nombre: 'Maria',
+        apellido: 'Gonzalez',
+        carrera: 'Ingeniería en Sistemas',
+        telefono: '12345678',
+        correo: 'maria@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
+    },
+    {
+        documento: '1121964987',
+        nombre: 'Camila',
+        apellido: 'Rodriguez',
+        carrera: 'Ingeniería en Sistemas',
+        telefono: '12345678',
+        correo: 'camila@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+    },
+    {
+        documento: '1121964988',
+        nombre: 'Santiago',
+        apellido: 'Gomez',
+        carrera: 'Ingeniería en Civil',
+        telefono: '12345678',
+        correo: 'santi@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
+    },
+    {
+        documento: '1121964989',
+        nombre: 'Andrea',
+        apellido: 'Martinez',
+        carrera: 'Ingeniería en Electrónica',
+        telefono: '12345678',
+        correo: 'andrea@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+    },
+    {
+        documento: '1121964990',
+        nombre: 'Carlos',
+        apellido: 'Sanchez',
+        carrera: 'Ingeniería en Gestión Empresarial',
+        telefono: '12345678',
+        correo: 'carlos@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+    },
+    {
+        documento: '1121964991',
+        nombre: 'Laura',
+        apellido: 'Gutierrez',
+        carrera: 'Ingeniería en Telecomunicaciones',
+        telefono: '12345678',
+        correo: 'lau@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
+    },
+    {
+        documento: '1121964992',
+        nombre: 'Daniel',
+        apellido: 'Ramirez',
+        carrera: 'Ingeniería en Seguridad Informática',
+        telefono: '12345678',
+        correo: 'daniel@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
+    },
+    {
+        documento: '1121964993',
+        nombre: 'Paula',
+        apellido: 'Hernandez',
+        carrera: 'Ingeniería en Geomática',
+        telefono: '12345678',
+        correo: 'paula@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+    },
+    {
+        documento: '1121964994',
+        nombre: 'Pedro',
+        apellido: 'Jimenez',
+        carrera: 'Ingeniería en Robótica',
+        telefono: '12345678',
+        correo: 'pedro@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
+    },
+    {
+        documento: '1121964995',
+        nombre: 'Juliana',
+        apellido: 'Diaz',
+        carrera: 'Ingeniería en Biomedica',
+        telefono: '12345678',
+        correo: 'juli@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
+    },
+    {
+        documento: '1121964996',
+        nombre: 'Mateo',
+        apellido: 'Alvarez',
+        carrera: 'Ingeniería en Medio Ambiente',
+        telefono: '12345678',
+        correo: 'mateo@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
+    },
+    {
+        documento: '1121964997',
+        nombre: 'Valentina',
+        apellido: 'Moreno',
+        carrera: 'Ingeniería en Mecatrónica',
+        telefono: '12345678',
+        correo: 'vale@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+    },
+    {
+        documento: '1121964998',
+        nombre: 'Nicolas',
+        apellido: 'Muñoz',
+        carrera: 'Ingeniería en Informática',
+        telefono: '12345678',
+        correo: 'nicolas@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
+    },
+    {
+        documento: '1121964999',
+        nombre: 'Mariana',
+        apellido: 'Castro',
+        carrera: 'Ingeniería en Bioquímica',
+        telefono: '12345678',
+        correo: 'mari@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
+    },
+];
+
+export const profesores = [
+    {
+        documento: '1121964985',
+        nombre: 'Juan',
+        apellido: 'Perez',
+        carrera: 'Ingeniería en Informática',
+        telefono: '12345678',
+        correo: 'Juan@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
+    },
+    {
+        documento: '1121964986',
+        nombre: 'Maria',
+        apellido: 'Gonzalez',
+        carrera: 'Ingeniería en Bioquímica',
+        telefono: '12345678',
+        correo: 'maria@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
+    },
+    {
+        documento: '1121964987',
+        nombre: 'Camila',
+        apellido: 'Rodriguez',
+        carrera: 'Ingeniería en Mecatrónica',
+        telefono: '12345678',
+        correo: 'camila@campusvirtual.aunarvillavicencio.edu.co',
+        img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+    },
+];

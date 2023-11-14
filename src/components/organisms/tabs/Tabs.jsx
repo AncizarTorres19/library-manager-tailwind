@@ -5,8 +5,8 @@ import { Icons } from '../../../assets/Icons/IconProvider';
 
 const Tab = ({ label, isActive, onClick, icon, iconSelected }) => (
   <div
-    className={`cursor-pointer flex items-center py-2 px-4 border-b-2 border-transparent text-base font-semibold ${isActive
-      ? 'border-primary-blue1 text-primary-blue1'
+    className={`mt-6 mb-6 cursor-pointer flex items-center py-2 px-4 border-b-2 border-transparent text-base font-semibold ${isActive
+      ? 'border-[#134678] text-primary-blue1'
       : 'hover:border-gray-400 text-black text-opacity-60'
       }`}
     onClick={onClick}
