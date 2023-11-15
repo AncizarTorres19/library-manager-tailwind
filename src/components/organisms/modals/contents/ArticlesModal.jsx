@@ -1,23 +1,22 @@
 
 // Dependencias
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
-//Assets
-import { Icons } from "../../../../assets/Icons/IconProvider";
 //Components
 import { Modal } from "../Modal";
-import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
 import { SelectSimple } from "../../selects/SelectSimple";
-import { useForm } from "react-hook-form";
 import { TextInputSimple } from "../../inputs/TextInputSimple";
-import { useAppDispatch } from "../../../../redux/store";
-import { useSelector } from "react-redux";
+//Actions
 import { assignArticleAction } from "../../../../redux/actions/HomeAction";
+import { useAppDispatch } from "../../../../redux/store";
+//Assets
+import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
+//Data
 import { libros } from "../../../../Data";
 
-const { InformationIcon, TrushIcon } = Icons; //Iconos
-
-export const StudentsModal = ({ closeModal, isOpen, dataModal, actionModal = () => { } }) => {
+export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
 
     const defaultValues = {
         motion: '',
@@ -37,9 +36,13 @@ export const StudentsModal = ({ closeModal, isOpen, dataModal, actionModal = () 
         defaultValues // se inicializa el formulario con los valores por defecto
     });
 
+    const dataForm = watch(); // Se obtienen los datos del formulario
+
     const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
     const { home: { personsAlerts } } = useSelector((state) => state.persistedData);
+
+    const [selectedBook, setSelectedBook] = useState(null);//[nombre, editorial, categoria, disponibles, img
 
     const handleClick = () => {
 
@@ -54,6 +57,15 @@ export const StudentsModal = ({ closeModal, isOpen, dataModal, actionModal = () 
         dispatch(assignArticleAction());
     }
 
+    const filterBooks = () => {
+        const books = libros.filter((item) => item.id === Number(dataForm?.book))
+        if (books.length > 0) setSelectedBook(books[0]);
+    }
+
+    useEffect(() => {
+        filterBooks();
+    }, [dataForm?.book])
+
     return (
         <>
             <Modal
@@ -64,18 +76,23 @@ export const StudentsModal = ({ closeModal, isOpen, dataModal, actionModal = () 
                 buttons={true}
             >
                 <p className="text-xl mb-4 font-bold">Asignar artículo</p>
-                <div className='flex items-start gap-2'>
-                    <img className='w-[54px] h-[57px] object-contain' src={Illustrations?.[dataModal?.img]} />
-                    <div className='flex flex-col items-start gap-2'>
-                        <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{dataModal?.nombre}</p>
-                        <p className='text-dimgray-200'>{dataModal?.editorial}</p>
-                    </div>
-                </div>
-                <div className='flex flex-col items-start gap-4 mt-6'>
-                    <p className='text-dimgray-200'>Libro físico</p>
-                    <p className='text-dimgray-200'>{dataModal?.categoria}</p>
-                    <p className='text-dimgray-200'>{dataModal?.disponibles} Disponibles</p>
-                </div>
+                {selectedBook && (
+                    <>
+                        <div className='flex items-start gap-2'>
+                            <img className='w-[54px] h-[57px] object-contain' src={Illustrations?.[selectedBook?.img]} />
+                            <div className='flex flex-col items-start gap-2'>
+                                <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{selectedBook?.nombre}</p>
+                                <p className='text-dimgray-200'>{selectedBook?.editorial}</p>
+                            </div>
+                        </div>
+                        <div className='flex flex-col items-start gap-4 mt-6'>
+                            <p className='text-dimgray-200'>Libro físico</p>
+                            <p className='text-dimgray-200'>{selectedBook?.categoria}</p>
+                            <p className='text-dimgray-200'>{selectedBook?.disponibles} Disponibles</p>
+                        </div>
+                    </>
+                )}
+
                 <div className='flex flex-col mt-5'>
                     <SelectSimple
                         errors={errors}
@@ -83,10 +100,10 @@ export const StudentsModal = ({ closeModal, isOpen, dataModal, actionModal = () 
                         nameRegister='book'
                         optionLabel='nombre'
                         options={libros}
-                        optionValue='editorial'
+                        optionValue='id'
                         placeholder='Selecciona una opción'
                         register={register}
-                        validations={{ required: 'El movimiento es requerido' }}
+                        validations={{ required: 'El libro es requerido' }}
                     />
                 </div>
                 <div className='flex flex-col mt-5'>

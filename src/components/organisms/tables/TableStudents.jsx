@@ -1,9 +1,8 @@
 import { useState } from 'react'
 //Assets
-import { Illustrations } from '../../../assets/Illustrations/IllustrationProvider';
 import { estudiantes } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
-import { StudentsModal } from '../modals/contents/StudentsModal';
+import { ArticlesModal } from '../modals/contents/ArticlesModal';
 
 export const TableStudents = () => {
 
@@ -45,7 +44,7 @@ export const TableStudents = () => {
     console.log('item', item)
     setDataModal(item);
     setOpenModal(true);
-}
+  }
 
   return (
     <div className="w-full overflow-hidden rounded-lg border border-gray-200 shadow-md p-3">
@@ -96,7 +95,7 @@ export const TableStudents = () => {
                   className='underline text-lightBlue font-semibold'
                   onClick={() => handleOpenModal(item)}
                 >
-                  {item.disponibles > 0 ? 'Asignar' : 'Agotado'}
+                  Asignar
                 </button>
               </td>
             </tr>
@@ -124,7 +123,7 @@ export const TableStudents = () => {
           </button>
         </div>
       </div>
-      {openModal && (<StudentsModal isOpen={openModal} closeModal={() => setOpenModal(false)} />)}
+      {openModal && (<ArticlesModal isOpen={openModal} closeModal={() => setOpenModal(false)} />)}
     </div>
   )
 }

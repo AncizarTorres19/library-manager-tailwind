@@ -1,5 +1,6 @@
 export const libros = [
     {
+        id: 1,
         nombre: 'Cien años de soledad',
         tipo: 'Novela',
         editorial: 'Sudamericana',
@@ -11,6 +12,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 2,
         nombre: '1984',
         tipo: 'Ciencia ficción',
         editorial: 'Secker & Warburg',
@@ -22,17 +24,19 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 3,
         nombre: 'El principito',
         tipo: 'Novela',
         editorial: 'Reynal & Hitchcock',
         categoria: 'Fábula',
         estado: 'Disponible',
-        disponibles: 12,
+        disponibles: 0,
         prestados: 3,
         enReparacion: 0,
         img: 'IllustrationBook'
     },
     {
+        id: 4,
         nombre: 'El señor de los anillos',
         tipo: 'Novela',
         editorial: 'Allen & Unwin',
@@ -44,6 +48,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 5,
         nombre: 'El alquimista',
         tipo: 'Novela',
         editorial: 'HarperCollins',
@@ -55,6 +60,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 6,
         nombre: 'El código Da Vinci',
         tipo: 'Novela',
         editorial: 'Random House',
@@ -66,6 +72,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 7,
         nombre: 'El retrato de Dorian Gray',
         tipo: 'Novela',
         editorial: 'Lippincott’s Monthly Magazine',
@@ -77,6 +84,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 8,
         nombre: 'El nombre del viento',
         tipo: 'Novela',
         editorial: 'DAW Books',
@@ -88,6 +96,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 9,
         nombre: 'El perfume',
         tipo: 'Novela',
         editorial: 'Diogenes Verlag',
@@ -99,6 +108,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 10,
         nombre: 'El retrato de Dorian Gray',
         tipo: 'Novela',
         editorial: 'Lippincott’s Monthly Magazine',
@@ -110,6 +120,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 11,
         nombre: 'El nombre del viento',
         tipo: 'Novela',
         editorial: 'DAW Books',
@@ -121,6 +132,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 12,
         nombre: 'El perfume',
         tipo: 'Novela',
         editorial: 'Diogenes Verlag',
@@ -132,6 +144,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 13,
         nombre: 'El retrato de Dorian Gray',
         tipo: 'Novela',
         editorial: 'Lippincott’s Monthly Magazine',
@@ -143,6 +156,7 @@ export const libros = [
         img: 'IllustrationBook'
     },
     {
+        id: 14,
         nombre: 'El nombre del viento',
         tipo: 'Novela',
         editorial: 'DAW Books',
@@ -158,15 +172,19 @@ export const libros = [
 
 export const estudiantes = [
     {
+        id: 1,
         documento: '1121964985',
+        tipo: 'Estudiante',
         nombre: 'Juan',
         apellido: 'Perez',
         carrera: 'Ingeniería en Sistemas',
         telefono: '12345678',
         correo: 'juan@campusvirtual.aunarvillavicencio.edu.co',
-        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
+        img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg',
     },
     {
+        id: 2,
+        tipo: 'Estudiante',
         documento: '1121964986',
         nombre: 'Maria',
         apellido: 'Gonzalez',
@@ -176,6 +194,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
     },
     {
+        id: 3,
+        tipo: 'Estudiante',
         documento: '1121964987',
         nombre: 'Camila',
         apellido: 'Rodriguez',
@@ -185,6 +205,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
     },
     {
+        id: 4,
+        tipo: 'Estudiante',
         documento: '1121964988',
         nombre: 'Santiago',
         apellido: 'Gomez',
@@ -194,6 +216,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
     },
     {
+        id: 5,
+        tipo: 'Estudiante',
         documento: '1121964989',
         nombre: 'Andrea',
         apellido: 'Martinez',
@@ -203,6 +227,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
     },
     {
+        id: 6,
+        tipo: 'Estudiante',
         documento: '1121964990',
         nombre: 'Carlos',
         apellido: 'Sanchez',
@@ -212,6 +238,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
     },
     {
+        id: 7,
+        tipo: 'Estudiante',
         documento: '1121964991',
         nombre: 'Laura',
         apellido: 'Gutierrez',
@@ -221,6 +249,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
     },
     {
+        id: 8,
+        tipo: 'Estudiante',
         documento: '1121964992',
         nombre: 'Daniel',
         apellido: 'Ramirez',
@@ -230,6 +260,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
     },
     {
+        id: 9,
+        tipo: 'Estudiante',
         documento: '1121964993',
         nombre: 'Paula',
         apellido: 'Hernandez',
@@ -239,6 +271,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
     },
     {
+        id: 10,
+        tipo: 'Estudiante',
         documento: '1121964994',
         nombre: 'Pedro',
         apellido: 'Jimenez',
@@ -248,6 +282,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
     },
     {
+        id: 11,
+        tipo: 'Estudiante',
         documento: '1121964995',
         nombre: 'Juliana',
         apellido: 'Diaz',
@@ -257,6 +293,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-4.jpg'
     },
     {
+        id: 12,
+        tipo: 'Estudiante',
         documento: '1121964996',
         nombre: 'Mateo',
         apellido: 'Alvarez',
@@ -266,6 +304,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
     },
     {
+        id: 13,
+        tipo: 'Estudiante',
         documento: '1121964997',
         nombre: 'Valentina',
         apellido: 'Moreno',
@@ -275,6 +315,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
     },
     {
+        id: 14,
+        tipo: 'Estudiante',
         documento: '1121964998',
         nombre: 'Nicolas',
         apellido: 'Muñoz',
@@ -284,6 +326,8 @@ export const estudiantes = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
     },
     {
+        id: 15,
+        tipo: 'Estudiante',
         documento: '1121964999',
         nombre: 'Mariana',
         apellido: 'Castro',
@@ -296,6 +340,8 @@ export const estudiantes = [
 
 export const profesores = [
     {
+        id: 16,
+        tipo: 'Profesor',
         documento: '1121964985',
         nombre: 'Juan',
         apellido: 'Perez',
@@ -305,6 +351,8 @@ export const profesores = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-1.jpg'
     },
     {
+        id: 17,
+        tipo: 'Profesor',
         documento: '1121964986',
         nombre: 'Maria',
         apellido: 'Gonzalez',
@@ -314,6 +362,8 @@ export const profesores = [
         img: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
     },
     {
+        id: 18,
+        tipo: 'Profesor',
         documento: '1121964987',
         nombre: 'Camila',
         apellido: 'Rodriguez',

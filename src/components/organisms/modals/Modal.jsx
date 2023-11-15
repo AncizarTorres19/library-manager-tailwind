@@ -54,7 +54,7 @@ export const Modal = ({
                                     onClick={closeModal}
                                     className='text-dimgray-100 font-normal text-base underline'
                                 >
-                                    Anterior
+                                    Cancelar
                                 </button>
                                 <button
                                     onClick={actionButtonSecond}

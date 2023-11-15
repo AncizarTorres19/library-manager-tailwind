@@ -83,28 +83,28 @@ export default function CardStatistics() {
     const dataGraph = [
         {
             "name": "Prestados",
-            "value": '2,23',
+            "value": '6',
             "color": "bg-primary-yellow1"
         },
         {
             "name": "Alerta de demora",
-            "value": '1,07',
+            "value": '10',
             "color": " bg-red-700"
         },
         {
             "name": "En reparación",
-            "value": '1,98',
+            "value": '30',
             "color": "bg-blue-900"
         },
     ];
 
     return (
-        <div className="flex flex-row w-[600px] max-w-[375px] h-[319px] max-h-[319px]">
+        <div className="flex flex-row w-[600px] max-w-[425px] h-[319px] max-h-[319px]">
             <div className="flex flex-col p-4 w-full max-h-[319px] bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-bold leading-none text-gray-900 dark:text-white">Estados de los artículos</h3>
                 </div>
-                <div className="flow-root overflow-y-auto w-fit h-[180px]">
+                <div className="flow-root overflow-y-auto w-full h-[180px]">
                     <DoughnutChart data={chartData} options={chartOptions} />
                 </div>
                 <div className="flex flex-wrap justify-between items-end">
@@ -113,7 +113,7 @@ export default function CardStatistics() {
                             <div className="flex items-center space-x-2 mt-6">
                                 <div className={`w-3 h-3 rounded-full ${color}`}></div>
                                 <div className="text-base tracking-[0.08px] leading-[22px] text-dimgray-200">
-                                    {name}
+                                    {name}: {value}
                                 </div>
                             </div>
                         </div>

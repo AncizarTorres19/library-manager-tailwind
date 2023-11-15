@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Illustrations } from '../../../assets/Illustrations/IllustrationProvider';
 import { libros } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
-import { StudentsModal } from '../modals/contents/StudentsModal';
+import { PersonModal } from '../modals/contents/PersonModal';
 
 export const TableArticles = () => {
 
@@ -128,7 +128,7 @@ export const TableArticles = () => {
                     </button>
                 </div>
             </div>
-            {openModal && (<StudentsModal isOpen={openModal} dataModal={dataModal} closeModal={() => setOpenModal(false)} />)}
+            {openModal && (<PersonModal isOpen={openModal} dataModal={dataModal} closeModal={() => setOpenModal(false)} />)}
         </div>
     )
 }
