@@ -63,7 +63,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
         const newPersons = persons.map((item) => {
             return {
                 ...item,
-                nombre: `${item.nombre} ${item.apellido} - ${item.documento} - (${item.tipo})`
+                nombre: `${item.nombre} ${item.apellido} - ${item.documento}`
             };
         });
         return newPersons;
@@ -87,25 +87,21 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                 actionButtonSecond={() => handleClick()}
                 buttons={true}
             >
-                <p className="text-xl mb-4 font-bold">Asignar a:</p>
+                <p className="text-xl mb-1 font-bold">Asignar a:</p>
                 {selectedBook && (
                     <>
-                        <div className='flex items-start gap-2'>
-                            <img className='w-16 h-16 rounded-full' src={selectedBook?.img} />
-                            <div className='flex flex-col items-start gap-2'>
-                                <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{selectedBook?.nombre}</p>
-                                <p className='text-dimgray-200'>{selectedBook?.apellido}</p>
-                            </div>
+                        <div className='flex items-end justify-center gap-1'>
+                            <img className='w-2/4 h-2/4 rounded-full' src={selectedBook?.img} />
                         </div>
-                        <div className='flex flex-col items-start gap-4 mt-6'>
-                            <p className='text-dimgray-200'>{selectedBook?.tipo}</p>
+                        <div className='flex flex-col items-start gap-1'>
+                            <p className='text-dimgray-200'>{selectedBook?.tipo}: {selectedBook?.nombre} {selectedBook?.apellido}</p>
                             <p className='text-dimgray-200'>{selectedBook?.tipo === 'Profesor' ? 'Titulo' : 'Programa'}: {selectedBook?.carrera}</p>
-                            <p className='text-dimgray-200'>Documento: {selectedBook?.documento}</p>
+                            {/* <p className='text-dimgray-200'>Documento: {selectedBook?.documento}</p> */}
                         </div>
                     </>
                 )}
 
-                <div className='flex flex-col mt-5'>
+                <div className='flex flex-col mt-1'>
                     <SelectSimple
                         errors={errors}
                         label='Estudiante o profesor'
@@ -118,7 +114,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                         validations={{ required: 'El estudiante o profesor es requerido' }}
                     />
                 </div>
-                <div className='flex flex-col mt-5'>
+                <div className='flex flex-col mt-2'>
                     <SelectSimple
                         errors={errors}
                         label='Movimiento'
@@ -131,7 +127,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                         validations={{ required: 'El movimiento es requerido' }}
                     />
                 </div>
-                <div className='flex flex-col w-full gap-2 mt-5 mb-6'>
+                <div className='flex flex-col w-full gap-2 mt-2 mb-3'>
                     <TextInputSimple
                         errors={errors}
                         label='Fecha de entrega'

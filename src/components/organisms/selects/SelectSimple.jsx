@@ -48,7 +48,7 @@ export const SelectSimple = ({
 
     return (
         <>
-            <label className='text-f18 text-primary-gris2'>{label}</label>
+           <label className='text-f18 text-black'>{label}</label>
             <select
                 className='px-2 py-2 rounded-md border border-dimgray-200 text-primary-gris2'
                 disabled={disabled}
