@@ -9,10 +9,10 @@ export const LoginAction = (user) => {
 
     return async (dispatch) => {
         try {
-            // const { data: { data } } = await axiosClient.post('/login', user);
-            // const { user_id, nombre: username, empresa: company } = JSON.parse(data.info);
-            localStorage.setItem('token', '123456789');
-            dispatch(loginCase({ user_id: '1', username: 'ancizar.torres@campusvirtual.aunarvillavicencio.edu.co', company: 'Aunar' }));
+            const { data } = await axiosClient.post('/login', user);
+            const { id, username } = data.usuario;
+            localStorage.setItem('token', data.token);
+            dispatch(loginCase({ id, username, company: 'Aunar' }));
             return { error: null, verify: true };
         } catch (error) {
             console.log(error);

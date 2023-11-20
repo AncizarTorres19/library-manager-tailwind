@@ -46,7 +46,7 @@ export const getTeachersAction = () => async (dispatch) => {
 // Acción para trear los articulos
 export const getArticlesAction = () => async (dispatch) => {
     try {
-        const res = await axiosClient.get("/api/articulos");
+        const res = await axiosClient.get("/books");
         dispatch(getArticlesCase(res.data));
     } catch (error) {
         console.log(error);

@@ -14,12 +14,14 @@ import { TextInputController } from '../../../components/organisms/inputs/TextIn
 import { paths } from '../../../routes/paths';
 import { LoginAction } from '../../../redux/actions/AuthAction';
 import { useAppDispatch } from '../../../redux/store';
+import { CustomAlert } from '../../../components/organisms/customAlert/CustomAlert';
 export const LandingLogin = () => {
 
     const navigate = useNavigate(); // hook para navegar entre páginas
     const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
     const [rememberMe, setRememberMe] = useState(false);
+    const [textAlert, setTextAlert] = useState(''); // estado para mostrar el mensaje de error
 
     const defaultValues = {
         email: '',
@@ -38,27 +40,11 @@ export const LandingLogin = () => {
         defaultValues // se inicializa el formulario con los valores por defecto
     });
 
-    const dataForm = watch(); // obtiene los valores del formulario
-
-    const onSubmit = (data) => {
-        console.log(data);
-        // dispatch({
-        //     type: types.login,
-        //     payload: {
-        //         name: 'Ancizar',
-        //         email: watch('email')
-        //     }
-        // });
-        // navigate('/aunar-library/dashboard');
-        // navigate(paths.APPHOME);
-        onLogIn();
-    }
-
-    const onLogIn = async () => {
+    const onSubmit = async (data) => {
         // Lógica de autenticación, verificación de credenciales, etc.
         const user = {
-            email: dataForm.email,
-            contraseña: dataForm.password,
+            email: data.email,
+            password: data.password,
             // otros datos del usuario
         };
 
@@ -104,24 +90,6 @@ export const LandingLogin = () => {
 
                                 <h2 className="text-iniciar-sesion mb-6">Inicia sesión</h2>
 
-                                {/* <div className='flex flex-col w-full gap-2'>
-                                        <TextInputSimple
-                                            errors={errors}
-                                            label='Correo electrónico'
-                                            nameRegister='email'
-                                            register={register}
-                                            placeholder='Escribe el correo'
-                                            validations={{
-                                                required: 'El correo es requerido',
-                                                pattern: {
-                                                    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                                                    message: 'El correo no es válido'
-                                                }
-                                            }}
-                                        />
-                                    </div>
-*/}
-
                                 <TextInputController
                                     control={control}
                                     name={'email'}
@@ -150,6 +118,14 @@ export const LandingLogin = () => {
                                     styleLabel='text-base tracking-[0.09px] font-sora text-gray-100 text-left'
                                     styleInput='bg-white w-full rounded-8xs box-border h-[37px] border-[0.5px] border-solid border-primary-gris3 pl-3'
                                 />
+
+                                {textAlert && (
+                                    <CustomAlert
+                                        message={textAlert}
+                                        type='error'
+                                    />
+                                )}
+
                             </div>
 
                             <button
