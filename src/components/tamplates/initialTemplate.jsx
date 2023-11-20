@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dashboard } from "../organisms/dashboard/Dashboard"
 import { Tabs } from "../organisms/tabs/Tabs"
 import { TableArticles } from "../organisms/tables/TableArticles";
 import { TableStudents } from "../organisms/tables/TableStudents";
 import { TableTeachers } from "../organisms/tables/TableTeachers";
+import { useAppDispatch } from "../../redux/store";
+import { getArticlesAction, getStudentsAction, getTeachersAction } from "../../redux/actions/HomeAction";
 
 export const InitialTemplate = () => {
+
+  const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
   const tabs = [
     {
@@ -31,6 +35,12 @@ export const InitialTemplate = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const CurrentTable = tabs[activeTab].tableComponent;
+
+  useEffect(() => {
+    dispatch(getArticlesAction());
+    dispatch(getStudentsAction());
+    dispatch(getTeachersAction());
+  }, []);
 
   return (
     <div className='flex flex-col justify-start items-center h-auto p-3 gap-4'>

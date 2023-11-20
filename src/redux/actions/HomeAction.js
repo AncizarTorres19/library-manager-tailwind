@@ -16,7 +16,7 @@ import {
 export const getPersAlertsAction = () => async (dispatch) => {
     dispatch(getPersAlertsCase(dataPerson));
     // try {
-    //     const res = await axiosClient.get("/api/personas/alertas");
+    //      const { data } = await axiosClient.get("/api/personas/alertas");
     //     dispatch(getPersAlertsCase(res.data));
     // } catch (error) {
     //     console.log(error);
@@ -26,8 +26,8 @@ export const getPersAlertsAction = () => async (dispatch) => {
 // Acción para trear los estudiantes
 export const getStudentsAction = () => async (dispatch) => {
     try {
-        const res = await axiosClient.get("/api/estudiantes");
-        dispatch(getStudentsCase(res.data));
+        const { data } = await axiosClient.get("/students");
+        dispatch(getStudentsCase(data.estudiantes));
     } catch (error) {
         console.log(error);
     }
@@ -36,8 +36,8 @@ export const getStudentsAction = () => async (dispatch) => {
 // Acción para trear los profesores
 export const getTeachersAction = () => async (dispatch) => {
     try {
-        const res = await axiosClient.get("/api/profesores");
-        dispatch(getTeachersCase(res.data));
+        const { data } = await axiosClient.get("/professors");
+        dispatch(getTeachersCase(data.profesores));
     } catch (error) {
         console.log(error);
     }
@@ -46,31 +46,21 @@ export const getTeachersAction = () => async (dispatch) => {
 // Acción para trear los articulos
 export const getArticlesAction = () => async (dispatch) => {
     try {
-        const res = await axiosClient.get("/books");
-        dispatch(getArticlesCase(res.data));
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-// Acción para trear los estados de los articulos (estadiaticas)
-export const getArticlesStatusAction = () => async (dispatch) => {
-    try {
-        const res = await axiosClient.get("/api/articulos/estados");
-        dispatch(getArticlesStatusCase(res.data));
+        const { data } = await axiosClient.get("/books");
+        dispatch(getArticlesCase(data.libros));
     } catch (error) {
         console.log(error);
     }
 };
 
 // Acción para asignar un articulo a un estudiante
-export const assignArticleAction = (data) => async (dispatch, getState) => {
-    const { home: { personsAlerts } } = getState().persistedData;
-    console.log(personsAlerts);
-    // try {
-    //     const res = await axiosClient.post("/api/articulos/asignar", data);
-    //     dispatch(assignArticleCase(res.data));
-    // } catch (error) {
-    //     console.log(error);
-    // }
+export const assignArticleAction = (obj) => async (dispatch, getState) => {
+    try {
+        const { data } = await axiosClient.post("/assignments/create", obj);
+        dispatch(getArticlesAction());
+        return { error: null, verify: true };
+    } catch (error) {
+        console.log(error);
+        return { error: error.response.data.message, verify: false };
+    }
 };

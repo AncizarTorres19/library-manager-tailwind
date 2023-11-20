@@ -1,10 +1,12 @@
 import { useState } from 'react'
 //Assets
-import { estudiantes } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
 import { ArticlesModal } from '../modals/contents/ArticlesModal';
+import { useSelector } from 'react-redux';
 
 export const TableStudents = () => {
+
+  const { home: { students } } = useSelector((state) => state.persistedData);
 
   const [openModal, setOpenModal] = useState(false);
   const [dataModal, setDataModal] = useState({});//[nombre, editorial, categoria, disponibles, img]
@@ -12,14 +14,14 @@ export const TableStudents = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5; // Número de elementos por página
 
-  const filteredData = estudiantes.filter(
+  const filteredData = students.filter(
     (item) =>
       item.documento.toLowerCase().includes(searchText.toLowerCase()) ||
       item.nombre.toLowerCase().includes(searchText.toLowerCase()) ||
       item.apellido.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.carrera.toLowerCase().includes(searchText.toLowerCase()) ||
+      item.titulo.toLowerCase().includes(searchText.toLowerCase()) ||
       item.telefono.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.correo.toLowerCase().includes(searchText.toLowerCase())
+      item.email.toLowerCase().includes(searchText.toLowerCase())
   );
 
   const pageCount = Math.ceil(filteredData.length / itemsPerPage);
@@ -86,9 +88,9 @@ export const TableStudents = () => {
                 </div>
               </td>
               <td className="whitespace-normal p-3">{item.documento}</td>
-              <td className="whitespace-normal p-3">{item.carrera}</td>
+              <td className="whitespace-normal p-3">{item.titulo}</td>
               <td className="whitespace-normal p-3">{item.telefono}</td>
-              <td className="whitespace-normal p-3">{item.correo}</td>
+              <td className="whitespace-normal p-3">{item.email}</td>
               <td className="whitespace-normal p-3 text-right">
                 <button
                   disabled={item.disponibles === 0}
@@ -123,7 +125,7 @@ export const TableStudents = () => {
           </button>
         </div>
       </div>
-      {openModal && (<ArticlesModal isOpen={openModal} closeModal={() => setOpenModal(false)} />)}
+      {openModal && (<ArticlesModal closeModal={() => setOpenModal(false)} isOpen={openModal} dataModal={dataModal} />)}
     </div>
   )
 }

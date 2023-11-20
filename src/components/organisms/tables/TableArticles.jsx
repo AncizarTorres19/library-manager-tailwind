@@ -1,11 +1,13 @@
 import { useState } from 'react'
 //Assets
 import { Illustrations } from '../../../assets/Illustrations/IllustrationProvider';
-import { libros } from '../../../Data';
 import { Icons } from '../../../assets/Icons/IconProvider';
 import { PersonModal } from '../modals/contents/PersonModal';
+import { useSelector } from 'react-redux';
 
 export const TableArticles = () => {
+
+    const { home: { articles } } = useSelector((state) => state.persistedData);
 
     const [openModal, setOpenModal] = useState(false);
     const [dataModal, setDataModal] = useState({});//[nombre, editorial, categoria, disponibles, img]
@@ -13,13 +15,12 @@ export const TableArticles = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 5; // Número de elementos por página
 
-    const filteredData = libros.filter(
+    const filteredData = articles.filter(
         (item) =>
-            item.nombre.toLowerCase().includes(searchText.toLowerCase()) ||
+            item.titulo.toLowerCase().includes(searchText.toLowerCase()) ||
             item.tipo.toLowerCase().includes(searchText.toLowerCase()) ||
             item.categoria.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.editorial.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.estado.toLowerCase().includes(searchText.toLowerCase())
+            item.editorial.toLowerCase().includes(searchText.toLowerCase())
     );
 
     const pageCount = Math.ceil(filteredData.length / itemsPerPage);
@@ -46,6 +47,18 @@ export const TableArticles = () => {
         setOpenModal(true);
     }
 
+    const getText = (item) => {
+        switch (true) {
+            case item.cantidad_total === 0:
+                return 'Agotado';
+            case item.cantidad_total === item.cantidad_reparacion:
+                return 'No disponible';
+            case item.cantidad_total === item.cantidad_prestados + item.cantidad_reparacion:
+                return 'Agotado';
+            default:
+                return 'Asignar';
+        }
+    };
 
     return (
         <div className="w-full overflow-hidden rounded-lg border border-gray-200 shadow-md p-3">
@@ -68,8 +81,7 @@ export const TableArticles = () => {
                         <th className="w-1/4">Nombre</th>
                         <th className="w-fit">Tipo</th>
                         <th className="w-fit">Categoría</th>
-                        <th className="w-fit">Estado</th>
-                        <th className="w-fit">Disponibles</th>
+                        <th className="w-fit">Ejemplares</th>
                         <th className="w-fit">Prestados</th>
                         <th className="w-fit">En reparación</th>
                         <th className="w-fit"></th>
@@ -81,26 +93,25 @@ export const TableArticles = () => {
                         <tr key={index}>
                             <td className="whitespace-normal p-3 w-36">
                                 <div className='flex items-center gap-2'>
-                                    <img className='w-[24px] h-[37px]' src={Illustrations?.[item?.img]} />
+                                    <img className='w-[24px] h-[37px]' src={Illustrations?.IllustrationBook} />
                                     <div>
-                                        <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{item?.nombre}</p>
+                                        <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{item?.titulo}</p>
                                         <p className='text-dimgray-200 font-normal'>{item?.editorial}</p>
                                     </div>
                                 </div>
                             </td>
                             <td className="whitespace-normal p-3">{item.tipo}</td>
                             <td className="whitespace-normal p-3">{item.categoria}</td>
-                            <td className="whitespace-normal p-3">{item.estado}</td>
-                            <td className="whitespace-normal p-3">{item.disponibles}</td>
-                            <td className="whitespace-normal p-3">{item.prestados}</td>
-                            <td className="whitespace-normal p-3">{item.enReparacion}</td>
+                            <td className="whitespace-normal p-3">{item.cantidad_total}</td>
+                            <td className="whitespace-normal p-3">{item.cantidad_prestados}</td>
+                            <td className="whitespace-normal p-3">{item.cantidad_reparacion}</td>
                             <td className="whitespace-normal p-3 text-right">
                                 <button
-                                    disabled={item.disponibles === 0}
+                                    disabled={item.cantidad_prestados + item.cantidad_reparacion === item.cantidad_total}
                                     className='underline text-lightBlue font-semibold'
                                     onClick={() => handleOpenModal(item)}
                                 >
-                                    {item.disponibles > 0 ? 'Asignar' : 'Agotado'}
+                                    {getText(item)}
                                 </button>
                             </td>
                         </tr>

@@ -13,15 +13,16 @@ import { assignArticleAction } from "../../../../redux/actions/HomeAction";
 import { useAppDispatch } from "../../../../redux/store";
 //Assets
 import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
-//Data
-import { profesores, estudiantes } from "../../../../Data";
 
 export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
 
+    const { home: { students, teachers } } = useSelector((state) => state.persistedData);
+
     const defaultValues = {
-        motion: '',
         date: '',
-        person: ''
+        motion: '',
+        person: '',
+        typePerson: ''
     }
 
     const {
@@ -38,32 +39,33 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
 
     const dataForm = watch(); // Se obtienen los datos del formulario
 
-    const persons = [...profesores, ...estudiantes] // Se unen los profesores y estudiantes en un solo array
-
     const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
-    const { home: { personsAlerts } } = useSelector((state) => state.persistedData);
 
     const [selectedBook, setSelectedBook] = useState(null);//[nombre, editorial, categoria, disponibles, img
 
-    const handleClick = () => {
+    const handleClick = async () => {
 
         const obj = {
-            "id": makeid(5),
-            "img": "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
-            "name": "Luisa Fernanda Gómez Gómez",
-            "books": 2,
-            "date": "10-09-2023",
-            "status": "Entregado"
+            libro_id: dataModal?.id,
+            estudiante_id: dataForm?.typePerson === '1' ? dataForm?.person : null,
+            profesor_id: dataForm?.typePerson === '2' ? dataForm?.person : null,
+            fecha_entrega: dataForm?.date,
+            estado: dataForm?.motion === '1' ? 'Prestado' : 'En Reparación'
         }
-        dispatch(assignArticleAction());
+        const { error, verify } = await dispatch(assignArticleAction(obj));
+        error && console.log(error);
+        verify && closeModal();
     }
 
+    let persons = dataForm?.typePerson === '1' ? students : teachers;
+
     const rebuildPersons = () => {
+        if (dataForm?.typePerson === '') return [];
         const newPersons = persons.map((item) => {
             return {
                 ...item,
-                nombre: `${item.nombre} ${item.apellido} - ${item.documento}`
+                nombre: `${item.nombre} ${item.apellido} | cc: ${item.documento}`
             };
         });
         return newPersons;
@@ -94,9 +96,8 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                             <img className='w-2/4 h-2/4 rounded-full' src={selectedBook?.img} />
                         </div>
                         <div className='flex flex-col items-start gap-1'>
-                            <p className='text-dimgray-200'>{selectedBook?.tipo}: {selectedBook?.nombre} {selectedBook?.apellido}</p>
-                            <p className='text-dimgray-200'>{selectedBook?.tipo === 'Profesor' ? 'Titulo' : 'Programa'}: {selectedBook?.carrera}</p>
-                            {/* <p className='text-dimgray-200'>Documento: {selectedBook?.documento}</p> */}
+                            <p className='text-dimgray-200'>{selectedBook?.rol}: {selectedBook?.nombre} {selectedBook?.apellido}</p>
+                            <p className='text-dimgray-200'>{selectedBook?.rol === 'Profesor' ? 'Titulo' : 'Programa'}: {selectedBook?.titulo}</p>
                         </div>
                     </>
                 )}
@@ -105,23 +106,38 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                     <SelectSimple
                         errors={errors}
                         label='Estudiante o profesor'
-                        nameRegister='person'
-                        optionLabel='nombre'
-                        options={rebuildPersons()}
+                        nameRegister='typePerson'
+                        optionLabel='tipo'
+                        options={[{ id: 1, tipo: 'Estudiante' }, { id: 2, tipo: 'Profesor' }]}
                         optionValue='id'
                         placeholder='Selecciona una opción'
                         register={register}
                         validations={{ required: 'El estudiante o profesor es requerido' }}
                     />
                 </div>
+                {dataForm?.typePerson !== '' && (
+                    <div className='flex flex-col mt-1'>
+                        <SelectSimple
+                            errors={errors}
+                            label={dataForm?.typePerson === '1' ? 'Estudiante' : 'Profesor'}
+                            nameRegister='person'
+                            optionLabel='nombre'
+                            options={rebuildPersons()}
+                            optionValue='id'
+                            placeholder='Selecciona una opción'
+                            register={register}
+                            validations={{ required: 'El estudiante o profesor es requerido' }}
+                        />
+                    </div>
+                )}
                 <div className='flex flex-col mt-2'>
                     <SelectSimple
                         errors={errors}
                         label='Movimiento'
                         nameRegister='motion'
                         optionLabel='motion'
-                        options={[{ motion: 'Prestar' }, { motion: 'Reparar' }]}
-                        optionValue='motion'
+                        options={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
+                        optionValue='id'
                         placeholder='Selecciona una opción'
                         register={register}
                         validations={{ required: 'El movimiento es requerido' }}

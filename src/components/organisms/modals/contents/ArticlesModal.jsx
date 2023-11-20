@@ -13,10 +13,10 @@ import { assignArticleAction } from "../../../../redux/actions/HomeAction";
 import { useAppDispatch } from "../../../../redux/store";
 //Assets
 import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
-//Data
-import { libros } from "../../../../Data";
 
 export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
+
+    const { home: { articles } } = useSelector((state) => state.persistedData);
 
     const defaultValues = {
         motion: '',
@@ -40,25 +40,26 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
 
     const dispatch = useAppDispatch(); // hook para ejecutar acciones de redux
 
-    const { home: { personsAlerts } } = useSelector((state) => state.persistedData);
-
     const [selectedBook, setSelectedBook] = useState(null);//[nombre, editorial, categoria, disponibles, img
 
-    const handleClick = () => {
+    console.log(dataForm, 'dataForm')
+    console.log(dataModal, 'dataModal')
+    const handleClick = async () => {
 
         const obj = {
-            "id": makeid(5),
-            "img": "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
-            "name": "Luisa Fernanda Gómez Gómez",
-            "books": 2,
-            "date": "10-09-2023",
-            "status": "Entregado"
+            libro_id: dataForm?.book,
+            estudiante_id: dataModal?.rol === 'Estudiante' ? dataModal?.id : null,
+            profesor_id: dataModal?.rol === 'Profesor' ? dataModal?.id : null,
+            fecha_entrega: dataForm?.date,
+            estado: dataForm?.motion === '1' ? 'Prestado' : 'En Reparación'
         }
-        dispatch(assignArticleAction());
+        const { error, verify } = await dispatch(assignArticleAction(obj));
+        error && console.log(error);
+        verify && closeModal();
     }
 
     const filterBooks = () => {
-        const books = libros.filter((item) => item.id === Number(dataForm?.book))
+        const books = articles.filter((item) => item.id === Number(dataForm?.book))
         if (books.length > 0) setSelectedBook(books[0]);
     }
 
@@ -78,17 +79,17 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                 <p className="text-xl mb-4 font-bold">Asignar artículo</p>
                 {selectedBook && (
                     <>
-                        <div className='flex items-start gap-2'>
-                            <img className='w-[54px] h-[57px] object-contain' src={Illustrations?.[selectedBook?.img]} />
+                        <div className='flex items-start gap-1'>
+                            <img className='w-[54px] h-[57px] object-contain' src={Illustrations?.IllustrationBook} />
                             <div className='flex flex-col items-start gap-2'>
-                                <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{selectedBook?.nombre}</p>
+                                <p className='font-semibold text-base text-darkslategray-200 overflow-x-hidden'>{selectedBook?.titulo}</p>
                                 <p className='text-dimgray-200'>{selectedBook?.editorial}</p>
                             </div>
                         </div>
-                        <div className='flex flex-col items-start gap-4 mt-6'>
+                        <div className='flex flex-col items-start gap-2 mt-6'>
                             <p className='text-dimgray-200'>Libro físico</p>
                             <p className='text-dimgray-200'>{selectedBook?.categoria}</p>
-                            <p className='text-dimgray-200'>{selectedBook?.disponibles} Disponibles</p>
+                            <p className='text-dimgray-200'>Ejemplares disponibles: {selectedBook?.cantidad_total - selectedBook?.cantidad_prestados - selectedBook?.cantidad_reparacion}</p>
                         </div>
                     </>
                 )}
@@ -98,8 +99,8 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                         errors={errors}
                         label='Libro'
                         nameRegister='book'
-                        optionLabel='nombre'
-                        options={libros}
+                        optionLabel='titulo'
+                        options={articles}
                         optionValue='id'
                         placeholder='Selecciona una opción'
                         register={register}
@@ -112,8 +113,8 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                         label='Movimiento'
                         nameRegister='motion'
                         optionLabel='motion'
-                        options={[{ motion: 'Prestar' }, { motion: 'Reparar' }]}
-                        optionValue='motion'
+                        options={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
+                        optionValue='id'
                         placeholder='Selecciona una opción'
                         register={register}
                         validations={{ required: 'El movimiento es requerido' }}
