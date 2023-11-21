@@ -19,16 +19,14 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
     const { home: { articles } } = useSelector((state) => state.persistedData);
 
     const defaultValues = {
-        motion: '',
+        motion: null,
         date: '',
-        book: ''
+        book: null
     }
 
     const {
         handleSubmit,
         register,
-        reset,
-        setValue,
         watch,
         control,
         formState: { errors }
@@ -47,11 +45,11 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
     const handleClick = async () => {
 
         const obj = {
-            libro_id: dataForm?.book,
+            libro_id: dataForm?.book?.value,
             estudiante_id: dataModal?.rol === 'Estudiante' ? dataModal?.id : null,
             profesor_id: dataModal?.rol === 'Profesor' ? dataModal?.id : null,
             fecha_entrega: dataForm?.date,
-            estado: dataForm?.motion === '1' ? 'Prestado' : 'En Reparación'
+            estado: dataForm?.motion?.value === 1 ? 'Prestado' : 'En Reparación'
         }
         const { error, verify } = await dispatch(assignArticleAction(obj));
         error && console.log(error);
@@ -73,7 +71,7 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                 isOpen={isOpen}
                 closeModal={closeModal}
                 actionButtonFist={closeModal}
-                actionButtonSecond={() => handleClick()}
+                handleSubmit={handleSubmit(handleClick)}
                 buttons={true}
             >
                 <p className="text-xl mb-4 font-bold">Asignar artículo</p>
@@ -120,13 +118,7 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                         nameRegister='date'
                         type="date"
                         register={register}
-                        validations={{
-                            required: 'La fecha es requerida',
-                            pattern: {
-                                value: /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/,
-                                message: 'La fecha no es válida'
-                            }
-                        }}
+                        validations={{ required: 'La fecha es requerida' }}
                     />
                 </div>
             </Modal >

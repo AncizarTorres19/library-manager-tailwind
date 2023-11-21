@@ -27,8 +27,6 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
     const {
         handleSubmit,
         register,
-        reset,
-        setValue,
         watch,
         control,
         formState: { errors }
@@ -79,6 +77,9 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
         filterBooks();
     }, [dataForm?.person])
 
+    console.log(dataForm, 'dataForm')
+    console.log(errors, 'errors')
+
     return (
         <>
             <Modal
@@ -111,7 +112,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                         keyLabel="tipo"
                     />
                 </div>
-                {dataForm?.typePerson !== '' && (
+                {dataForm?.typePerson && (
                     <div className='flex flex-col mt-1'>
                         <CustomSelect
                             control={control}
@@ -140,13 +141,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                         nameRegister='date'
                         type="date"
                         register={register}
-                        validations={{
-                            required: 'La fecha es requerida',
-                            pattern: {
-                                value: /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/,
-                                message: 'La fecha no es válida'
-                            }
-                        }}
+                        validations={{ required: false }}
                     />
                 </div>
             </Modal >
