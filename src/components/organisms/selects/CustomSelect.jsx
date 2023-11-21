@@ -31,7 +31,7 @@ import { useEffect, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
 // Axios
-import { axiosClient } from '../../../../config/AxiosClient';
+import { axiosClient } from '../../../config/AxiosClient';
 // Components
 import { CustomAlert } from '../customAlert/CustomAlert';
 
@@ -43,11 +43,12 @@ export const CustomSelect = ({
     label = 'Seleccione',
     name,
     optionImage = false,
-    placeholder,
+    placeholder = 'Selecciona una opción',
     rules = {},
     searchable = true,
     staticData = null,
-    keyOption = 'value',
+    keyOption = 'id',
+    keyLabel = 'titulo'
 }) => {
     const [list, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +74,8 @@ export const CustomSelect = ({
         }
     }, [apiUrl, staticData]);
 
+    console.log(list, 'list')
+
     return (
         <>
             <label className='text-left text-gray-600 font-normal leading-6 text-base opacity-100'>
@@ -91,19 +94,22 @@ export const CustomSelect = ({
                             isSearchable={searchable}
                             isLoading={isLoading}
                             isClearable={clearable}
-                            options={list}
+                            options={list.map(option => ({
+                                value: option[keyOption],
+                                label: option[keyLabel]
+                            }))}
                             styles={customStyles}
-                            getOptionLabel={(option) => (
-                                <div>
-                                    {optionImage && (
-                                        <img
-                                            src={`https://flagcdn.com/24x18/${option.value.toLowerCase()}.png`}
-                                            alt={option.label}
-                                        />
-                                    )}
-                                    {!optionImage && option[keyOption]}
-                                </div>
-                            )}
+                            // getOptionLabel={(option) => (
+                            //     <div>
+                            //         {optionImage && (
+                            //             <img
+                            //                 src={`https://flagcdn.com/24x18/${option.value.toLowerCase()}.png`}
+                            //                 alt={option.label}
+                            //             />
+                            //         )}
+                            //         {!optionImage && option[keyOption]}
+                            //     </div>
+                            // )}
                         />
                         {error && (
                             <CustomAlert message={error.message} type='error' />

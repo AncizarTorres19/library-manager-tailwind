@@ -8,7 +8,7 @@ const { CloseIcon } = Icons; // Iconos
 
 export const Modal = ({
     actionButtonFist = null,
-    actionButtonSecond = null,
+    handleSubmit = null,
     buttons = false,
     children,
     closeModal,
@@ -35,7 +35,7 @@ export const Modal = ({
     return (
         <>
             {isOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-midnightBlue font-Sora">
+                <form className="fixed inset-0 flex items-center justify-center z-50 bg-midnightBlue font-Sora" onSubmit={handleSubmit}>
                     <div className={`bg-white w-2/6 h-${height} rounded-lg p-8`}>
                         <div className="flex justify-end">
                             <img
@@ -57,7 +57,7 @@ export const Modal = ({
                                     Cancelar
                                 </button>
                                 <button
-                                    onClick={actionButtonSecond}
+                                    type='submit'
                                     className='bg-lightBlue text-white rounded-md px-4 py-2 text-base font-semibold'
                                 >
                                     Finalizar asignación
@@ -65,7 +65,7 @@ export const Modal = ({
                             </div>
                         )}
                     </div>
-                </div>
+                </form>
             )}
         </>
     );

@@ -6,13 +6,13 @@ import { useForm } from "react-hook-form";
 
 //Components
 import { Modal } from "../Modal";
-import { SelectSimple } from "../../selects/SelectSimple";
 import { TextInputSimple } from "../../inputs/TextInputSimple";
 //Actions
 import { assignArticleAction } from "../../../../redux/actions/HomeAction";
 import { useAppDispatch } from "../../../../redux/store";
 //Assets
 import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
+import { CustomSelect } from "../../selects/CustomSelect";
 
 export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
 
@@ -95,29 +95,22 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
                 )}
 
                 <div className='flex flex-col mt-5'>
-                    <SelectSimple
-                        errors={errors}
+                    <CustomSelect
+                        control={control}
+                        name={'book'}
+                        staticData={articles}
                         label='Libro'
-                        nameRegister='book'
-                        optionLabel='titulo'
-                        options={articles}
-                        optionValue='id'
-                        placeholder='Selecciona una opción'
-                        register={register}
-                        validations={{ required: 'El libro es requerido' }}
+                        rules={{ required: 'El libro es requerido' }}
                     />
                 </div>
                 <div className='flex flex-col mt-5'>
-                    <SelectSimple
-                        errors={errors}
+                    <CustomSelect
+                        control={control}
+                        name={'motion'}
+                        staticData={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
                         label='Movimiento'
-                        nameRegister='motion'
-                        optionLabel='motion'
-                        options={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
-                        optionValue='id'
-                        placeholder='Selecciona una opción'
-                        register={register}
-                        validations={{ required: 'El movimiento es requerido' }}
+                        rules={{ required: 'El movimiento es requerido' }}
+                        keyLabel="motion"
                     />
                 </div>
                 <div className='flex flex-col w-full gap-2 mt-5 mb-6'>

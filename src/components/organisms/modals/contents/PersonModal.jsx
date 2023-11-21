@@ -6,13 +6,12 @@ import { useForm } from "react-hook-form";
 
 //Components
 import { Modal } from "../Modal";
-import { SelectSimple } from "../../selects/SelectSimple";
 import { TextInputSimple } from "../../inputs/TextInputSimple";
 //Actions
 import { assignArticleAction } from "../../../../redux/actions/HomeAction";
 import { useAppDispatch } from "../../../../redux/store";
 //Assets
-import { Illustrations } from "../../../../assets/Illustrations/IllustrationProvider";
+import { CustomSelect } from "../../selects/CustomSelect";
 
 export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
 
@@ -20,9 +19,9 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
 
     const defaultValues = {
         date: '',
-        motion: '',
-        person: '',
-        typePerson: ''
+        motion: null,
+        person: null,
+        typePerson: null
     }
 
     const {
@@ -48,20 +47,20 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
 
         const obj = {
             libro_id: dataModal?.id,
-            estudiante_id: dataForm?.typePerson === '1' ? dataForm?.person : null,
-            profesor_id: dataForm?.typePerson === '2' ? dataForm?.person : null,
+            estudiante_id: dataForm?.typePerson?.value === 1 ? dataForm?.person?.value : null,
+            profesor_id: dataForm?.typePerson?.value === 2 ? dataForm?.person?.value : null,
             fecha_entrega: dataForm?.date,
-            estado: dataForm?.motion === '1' ? 'Prestado' : 'En Reparación'
+            estado: dataForm?.motion?.value === 1 ? 'Prestado' : 'En Reparación'
         }
         const { error, verify } = await dispatch(assignArticleAction(obj));
         error && console.log(error);
         verify && closeModal();
     }
 
-    let persons = dataForm?.typePerson === '1' ? students : teachers;
+    let persons = dataForm?.typePerson?.value === 1 ? students : teachers;
 
     const rebuildPersons = () => {
-        if (dataForm?.typePerson === '') return [];
+        if (!dataForm?.typePerson) return [];
         const newPersons = persons.map((item) => {
             return {
                 ...item,
@@ -86,7 +85,7 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                 isOpen={isOpen}
                 closeModal={closeModal}
                 actionButtonFist={closeModal}
-                actionButtonSecond={() => handleClick()}
+                handleSubmit={handleSubmit(handleClick)}
                 buttons={true}
             >
                 <p className="text-xl mb-1 font-bold">Asignar a:</p>
@@ -103,44 +102,35 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
                 )}
 
                 <div className='flex flex-col mt-1'>
-                    <SelectSimple
-                        errors={errors}
+                    <CustomSelect
+                        control={control}
+                        name={'typePerson'}
+                        staticData={[{ id: 1, tipo: 'Estudiante' }, { id: 2, tipo: 'Profesor' }]}
                         label='Estudiante o profesor'
-                        nameRegister='typePerson'
-                        optionLabel='tipo'
-                        options={[{ id: 1, tipo: 'Estudiante' }, { id: 2, tipo: 'Profesor' }]}
-                        optionValue='id'
-                        placeholder='Selecciona una opción'
-                        register={register}
-                        validations={{ required: 'El estudiante o profesor es requerido' }}
+                        rules={{ required: 'El estudiante o profesor es requerido' }}
+                        keyLabel="tipo"
                     />
                 </div>
                 {dataForm?.typePerson !== '' && (
                     <div className='flex flex-col mt-1'>
-                        <SelectSimple
-                            errors={errors}
-                            label={dataForm?.typePerson === '1' ? 'Estudiante' : 'Profesor'}
-                            nameRegister='person'
-                            optionLabel='nombre'
-                            options={rebuildPersons()}
-                            optionValue='id'
-                            placeholder='Selecciona una opción'
-                            register={register}
-                            validations={{ required: 'El estudiante o profesor es requerido' }}
+                        <CustomSelect
+                            control={control}
+                            name={'person'}
+                            staticData={rebuildPersons()}
+                            label={dataForm?.typePerson?.value === 1 ? 'Estudiante' : 'Profesor'}
+                            rules={{ required: 'El estudiante o profesor es requerido' }}
+                            keyLabel="nombre"
                         />
                     </div>
                 )}
                 <div className='flex flex-col mt-2'>
-                    <SelectSimple
-                        errors={errors}
+                    <CustomSelect
+                        control={control}
+                        name={'motion'}
+                        staticData={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
                         label='Movimiento'
-                        nameRegister='motion'
-                        optionLabel='motion'
-                        options={[{ id: 1, motion: 'Prestamo' }, { id: 2, motion: 'Repación' }]}
-                        optionValue='id'
-                        placeholder='Selecciona una opción'
-                        register={register}
-                        validations={{ required: 'El movimiento es requerido' }}
+                        rules={{ required: 'El movimiento es requerido' }}
+                        keyLabel="motion"
                     />
                 </div>
                 <div className='flex flex-col w-full gap-2 mt-2 mb-3'>

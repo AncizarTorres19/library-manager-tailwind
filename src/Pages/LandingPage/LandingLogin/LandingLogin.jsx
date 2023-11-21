@@ -4,8 +4,6 @@ import { useContex, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { TextInputSimple } from '../../../components/organisms/inputs/TextInputSimple';
-
 import logo from '../../../assets/Images/logo.png';
 import unsplash from '../../../assets/Images/unsplash.png';
 
