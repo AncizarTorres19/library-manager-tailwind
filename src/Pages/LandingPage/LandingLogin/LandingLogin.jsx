@@ -135,10 +135,10 @@ export const LandingLogin = () => {
                                 Ingresar
                             </button>
 
-                            <p className="no-tienes-cuenta-reg mt-1">
+                            {/* <p className="no-tienes-cuenta-reg mt-1">
                                 <span className="span">¿No tienes cuenta? </span>
                                 <span className="text-wrapper-5">Regístrate</span>
-                            </p>
+                            </p> */}
                         </div>
                     </div>
 

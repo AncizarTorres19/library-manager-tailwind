@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     articles: [],
-    articlesStatus: {},
-    personsAlerts: [],
+    articlesStatus: null,
+    asignments: [],
     students: [],
     teachers: [],
 };
@@ -12,17 +12,11 @@ export const homeSlice = createSlice({
     name: "home",
     initialState,
     reducers: {
-        assignArticleCase: (state, action) => {
-            state.articles = action.payload;
-        },
         getArticlesCase: (state, action) => {
             state.articles = action.payload;
         },
         getArticlesStatusCase: (state, action) => {
             state.articlesStatus = action.payload;
-        },
-        getPersAlertsCase: (state, action) => {
-            state.personsAlerts = action.payload;
         },
         getStudentsCase: (state, action) => {
             state.students = action.payload;
@@ -30,14 +24,16 @@ export const homeSlice = createSlice({
         getTeachersCase: (state, action) => {
             state.teachers = action.payload;
         },
+        getAsignmentsCase: (state, action) => {
+            state.asignments = action.payload;
+        },
     },
 });
 
 export const {
-    assignArticleCase,
     getArticlesCase,
     getArticlesStatusCase,
-    getPersAlertsCase,
+    getAsignmentsCase,
     getStudentsCase,
     getTeachersCase,
 } = homeSlice.actions;

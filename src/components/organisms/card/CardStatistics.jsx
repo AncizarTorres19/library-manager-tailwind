@@ -101,8 +101,8 @@ export default function CardStatistics() {
     ];
 
     return (
-        <div className="flex flex-row w-[600px] max-w-[425px] h-[319px] max-h-[319px]">
-            <div className="flex flex-col p-4 w-full max-h-[319px] bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-row w-[600px] max-w-[425px] h-[360px] max-h-[360px]">
+            <div className="flex flex-col p-4 w-full max-h-[360px] bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-bold leading-none text-gray-900 dark:text-white">Estados de los artículos</h3>
                 </div>

@@ -3,25 +3,12 @@ import { axiosClient } from "../../config/AxiosClient";
 import { dataPerson } from "../../Data";
 //Slices
 import {
-    assignArticleCase,
     getArticlesCase,
     getArticlesStatusCase,
-    getPersAlertsCase,
+    getAsignmentsCase,
     getStudentsCase,
     getTeachersCase,
 } from "../slices/HomeSlice";
-
-
-// Acción para trear las personas con alertas
-export const getPersAlertsAction = () => async (dispatch) => {
-    dispatch(getPersAlertsCase(dataPerson));
-    // try {
-    //      const { data } = await axiosClient.get("/api/personas/alertas");
-    //     dispatch(getPersAlertsCase(res.data));
-    // } catch (error) {
-    //     console.log(error);
-    // }
-};
 
 //Acción para traer las estadisticas de los articulos
 export const getArticlesStatusAction = () => async (dispatch) => {
@@ -69,6 +56,31 @@ export const assignArticleAction = (obj) => async (dispatch, getState) => {
         const { data } = await axiosClient.post("/assignments/create", obj);
         dispatch(getArticlesAction());
         dispatch(getArticlesStatusAction());
+        dispatch(getAsignmentsAction());
+        return { error: null, verify: true };
+    } catch (error) {
+        console.log(error);
+        return { error: error.response.data.message, verify: false };
+    }
+};
+
+// Acción para traer las asignaciones
+export const getAsignmentsAction = () => async (dispatch) => {
+    try {
+        const { data } = await axiosClient.get("/assignments");
+        dispatch(getAsignmentsCase(data.asignaciones));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Acción para cambiar el estado de una asignación
+export const changeStateAsignmentAction = (id, obj) => async (dispatch) => {
+    try {
+        const { data } = await axiosClient.put(`/assignments/state/${id}`, obj);
+        dispatch(getAsignmentsAction());
+        dispatch(getArticlesStatusAction());
+        dispatch(getArticlesAction());
         return { error: null, verify: true };
     } catch (error) {
         console.log(error);

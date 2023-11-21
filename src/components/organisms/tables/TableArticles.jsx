@@ -42,7 +42,6 @@ export const TableArticles = () => {
     };
 
     const handleOpenModal = (item) => {
-        console.log('item', item)
         setDataModal(item);
         setOpenModal(true);
     }
@@ -84,6 +83,7 @@ export const TableArticles = () => {
                         <th className="w-fit">Ejemplares</th>
                         <th className="w-fit">Prestados</th>
                         <th className="w-fit">En reparación</th>
+                        <th className="w-fit">En mora</th>
                         <th className="w-fit"></th>
                     </tr>
                 </thead>
@@ -105,9 +105,10 @@ export const TableArticles = () => {
                             <td className="whitespace-normal p-3">{item.cantidad_total}</td>
                             <td className="whitespace-normal p-3">{item.cantidad_prestados}</td>
                             <td className="whitespace-normal p-3">{item.cantidad_reparacion}</td>
+                            <td className="whitespace-normal p-3">{item.cantidad_mora}</td>
                             <td className="whitespace-normal p-3 text-right">
                                 <button
-                                    disabled={item.cantidad_prestados + item.cantidad_reparacion === item.cantidad_total}
+                                    disabled={item.cantidad_prestados + item.cantidad_reparacion + item.cantidad_mora === item.cantidad_total}
                                     className='underline text-lightBlue font-semibold'
                                     onClick={() => handleOpenModal(item)}
                                 >
