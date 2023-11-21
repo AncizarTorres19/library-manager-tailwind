@@ -23,6 +23,16 @@ export const getPersAlertsAction = () => async (dispatch) => {
     // }
 };
 
+//Acción para traer las estadisticas de los articulos
+export const getArticlesStatusAction = () => async (dispatch) => {
+    try {
+        const { data } = await axiosClient.get("/books/status");
+        dispatch(getArticlesStatusCase(data.estadisticas));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 // Acción para trear los estudiantes
 export const getStudentsAction = () => async (dispatch) => {
     try {
@@ -58,6 +68,7 @@ export const assignArticleAction = (obj) => async (dispatch, getState) => {
     try {
         const { data } = await axiosClient.post("/assignments/create", obj);
         dispatch(getArticlesAction());
+        dispatch(getArticlesStatusAction());
         return { error: null, verify: true };
     } catch (error) {
         console.log(error);

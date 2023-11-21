@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import DoughnutChart from "../graphics/DoughnutChart";
 
 const dataPerson = [
@@ -45,13 +46,14 @@ const dataPerson = [
 
 export default function CardStatistics() {
 
+    const { home: { articlesStatus } } = useSelector((state) => state.persistedData);
+
     const chartData = {
-        // labels: [],
         labels: ['En reparación', 'Alerta de demora', 'Prestados'],
         datasets: [
             {
                 label: 'Artículos',
-                data: [6, 10, 30],
+                data: [articlesStatus?.reparacion, articlesStatus?.mora, articlesStatus?.prestados],
                 backgroundColor: [
                     'rgba(33, 7, 255 )',
                     'rgba(221, 39, 0)',
@@ -83,17 +85,17 @@ export default function CardStatistics() {
     const dataGraph = [
         {
             "name": "Prestados",
-            "value": '6',
+            "value": articlesStatus?.prestados,
             "color": "bg-primary-yellow1"
         },
         {
             "name": "Alerta de demora",
-            "value": '10',
+            "value": articlesStatus?.mora,
             "color": " bg-red-700"
         },
         {
             "name": "En reparación",
-            "value": '30',
+            "value": articlesStatus?.reparacion,
             "color": "bg-blue-900"
         },
     ];

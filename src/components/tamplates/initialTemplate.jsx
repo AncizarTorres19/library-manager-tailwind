@@ -5,7 +5,7 @@ import { TableArticles } from "../organisms/tables/TableArticles";
 import { TableStudents } from "../organisms/tables/TableStudents";
 import { TableTeachers } from "../organisms/tables/TableTeachers";
 import { useAppDispatch } from "../../redux/store";
-import { getArticlesAction, getStudentsAction, getTeachersAction } from "../../redux/actions/HomeAction";
+import { getArticlesAction, getArticlesStatusAction, getStudentsAction, getTeachersAction } from "../../redux/actions/HomeAction";
 
 export const InitialTemplate = () => {
 
@@ -40,6 +40,7 @@ export const InitialTemplate = () => {
     dispatch(getArticlesAction());
     dispatch(getStudentsAction());
     dispatch(getTeachersAction());
+    dispatch(getArticlesStatusAction());
   }, []);
 
   return (
