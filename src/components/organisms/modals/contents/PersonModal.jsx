@@ -69,16 +69,13 @@ export const PersonModal = ({ closeModal, isOpen, dataModal }) => {
     };
 
     const filterBooks = () => {
-        const person = persons.filter((item) => item.id === Number(dataForm?.person))
+        const person = persons.filter((item) => item.id === Number(dataForm?.person?.value))
         if (person.length > 0) setSelectedBook(person[0]);
     }
 
     useEffect(() => {
         filterBooks();
     }, [dataForm?.person])
-
-    console.log(dataForm, 'dataForm')
-    console.log(errors, 'errors')
 
     return (
         <>

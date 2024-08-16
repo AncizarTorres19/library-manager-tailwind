@@ -10,7 +10,7 @@ export const Dashboard = () => {
     return (
         <div className='flex flex-row justify-start items-center h-auto p-3 gap-4'>
             {asignments?.length > 0 && <CardPerson />}
-            {articlesStatus?.total_libros_prestados_mora_reparacion !== 0 && <CardStatistics />}
+            {articlesStatus?.total_libros_prestados_mora_reparacion !== '0' && <CardStatistics />}
         </div>
     )
 }

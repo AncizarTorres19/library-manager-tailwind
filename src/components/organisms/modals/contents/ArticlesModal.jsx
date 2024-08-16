@@ -57,7 +57,7 @@ export const ArticlesModal = ({ closeModal, isOpen, dataModal }) => {
     }
 
     const filterBooks = () => {
-        const books = articles.filter((item) => item.id === Number(dataForm?.book))
+        const books = articles.filter((item) => item.id === Number(dataForm?.book?.value))
         if (books.length > 0) setSelectedBook(books[0]);
     }
 
